@@ -60,22 +60,36 @@ public class Helper {
     }
 
     public static ArrayList<String> getAlphabet(String language, File alphabetFile) {
-        ArrayList<String> letterArray = new ArrayList<>();
-        try {
-            String content = new String(Files.readAllBytes(alphabetFile.toPath()));
-            Object obj = new JSONParser().parse(content);
-            JSONObject jo = (JSONObject) obj;
-            JSONArray ja = (JSONArray) jo.get(language);
+        JSONObject alphabetJson = getJsonObject(alphabetFile);
+        return getArrayFromJson(alphabetJson, language);
+    }
 
-            Iterator itr = ja.iterator();
-            while (itr.hasNext()) {
-                letterArray.add(itr.next().toString());
-            }
-        } catch (ParseException | IOException e) {
+    private static JSONObject getJsonObject (File file) {
+        Object obj = null;
+        try {
+            String content = new String(Files.readAllBytes(file.toPath()));
+            obj = new JSONParser().parse(content);
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
+        return (JSONObject) obj;
+    }
 
-        return letterArray;
+    private static ArrayList<String> getArrayFromJson (JSONObject obj, String key) {
+        ArrayList<String> arr = new ArrayList<>();
+        JSONArray ja = (JSONArray) obj.get(key);
+        Iterator itr = ja.iterator();
+
+        while(itr.hasNext()) {
+            arr.add(itr.next().toString());
+        }
+        return arr;
+    }
+
+    public static void printErrorData(String[] dataSet) {
+        for(String s : dataSet) {
+            System.out.println(s);
+        }
     }
 
     public static void printNoErrorData(int generatedRecords, Faker faker, String localeString) {
@@ -107,7 +121,6 @@ public class Helper {
         if(errorAmount != 0) {
             dataArr = makeMoreErrors(dataArr, generatedRecords, errorAmount, rand, alphabet);
         }
-
         return dataArr;
     }
 
@@ -121,5 +134,4 @@ public class Helper {
         }
         return dataArr;
     }
-
 }

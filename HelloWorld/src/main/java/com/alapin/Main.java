@@ -1,7 +1,6 @@
 package com.alapin;
 
 import com.github.javafaker.Faker;
-
 import java.io.File;
 import java.net.URL;
 import java.util.*;
@@ -15,6 +14,7 @@ public class Main {
         final String localeString = Helper.getLocaleString(args[0]);
         final int generatedRecords = Integer.parseInt(args[1]);
         final float errorAverage = Helper.getErrorAverage(args);
+
         if (localeString == null || generatedRecords < 1 || errorAverage < 0) {
             System.exit(1);
         }
@@ -32,11 +32,7 @@ public class Main {
 
         String[] dataArr = Helper.generateData(generatedRecords, localeString, errorAmount,
                 new Random(), faker, alphabetFile);
-
-        for(int i = 0; i < generatedRecords; i++) {
-            System.out.println(dataArr[i]);
-        }
-
+        Helper.printErrorData(dataArr);
     }
 
     private File getAlphabetFromResources() {
