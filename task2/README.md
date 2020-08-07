@@ -1,0 +1,1 @@
+In a dynamically typed language (your choice of Ruby / Python 3 / JavaScript), implement a script that outputs one line for each file in the current folder containing the SHA3-256 value from the file content (in a hex), space, file name.

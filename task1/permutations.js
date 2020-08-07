@@ -1,0 +1,1 @@
+var s=b=>b.split("").sort().join(""),f=d=>{var e={},b=[];d.forEach(c=>{var a=s(c);e[a]?e[a].push(c):e[a]=[c],e[a].length>b.length&&(b=e[a])}),b.forEach(b=>console.log(b))};process.argv[2]?f(process.argv.slice(2)):1 
