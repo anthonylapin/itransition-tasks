@@ -94,16 +94,13 @@ public class Helper {
         String[] dataArr = new String[generatedRecords];
 
         for(int i = 0; i < generatedRecords; i++) {
-            String str = UserData.generateName(faker, localeString) + "; "
+            dataArr[i] = UserData.generateName(faker, localeString) + "; "
                     + UserData.generateAddress(faker, localeString) + "; "
                     + UserData.generatePhoneNumber(faker, localeString);
-            if(errorAmount != 0) {
-                if(rand.nextBoolean()) {
-                    dataArr[i] = Error.makeError(str, rand, alphabet);
-                    errorAmount--;
-                } else {
-                    dataArr[i] = str;
-                }
+
+            if(errorAmount != 0 && rand.nextBoolean()) {
+                dataArr[i] = Error.makeError(dataArr[i], rand, alphabet);
+                errorAmount--;
             }
         }
 
