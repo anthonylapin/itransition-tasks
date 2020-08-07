@@ -3,7 +3,6 @@ package com.alapin;
 import java.util.Random;
 import java.util.ArrayList;
 
-// class with methods that make errors, returns string array with errors
 public class Error {
     public static String makeError(String str, Random rand, ArrayList<String> alphabet) {
         switch(rand.nextInt(3)) {

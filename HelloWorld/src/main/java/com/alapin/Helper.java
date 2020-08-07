@@ -87,7 +87,9 @@ public class Helper {
         }
     }
 
-    public static String[] generateData(int generatedRecords, String localeString, int errorAmount, Random rand, Faker faker, File alphabetFile) {
+    public static String[] generateData(int generatedRecords, String localeString,
+                                        int errorAmount, Random rand, Faker faker,
+                                        File alphabetFile) {
         ArrayList<String> alphabet = Helper.getAlphabet(localeString, alphabetFile);
         String[] dataArr = new String[generatedRecords];
 
@@ -112,7 +114,9 @@ public class Helper {
         return dataArr;
     }
 
-    private static String[] makeMoreErrors(String[] dataArr, int generatedRecords, int errorAmount, Random rand, ArrayList<String> alphabet) {
+    private static String[] makeMoreErrors(String[] dataArr, int generatedRecords,
+                                           int errorAmount, Random rand,
+                                           ArrayList<String> alphabet) {
         while(errorAmount != 0) {
             int randomInt = rand.nextInt(generatedRecords);
             dataArr[randomInt] = Error.makeError(dataArr[randomInt], rand, alphabet);
