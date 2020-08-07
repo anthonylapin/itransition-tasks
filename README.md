@@ -1,1 +1,1 @@
-## This repository contains all the tasks that were given to me by curators
+## This repository contains all the tasks that were given to me
